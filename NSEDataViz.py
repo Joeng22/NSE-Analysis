@@ -94,7 +94,7 @@ def RoundDFValues(df_1):
 
     return df_1
 
-def PlotGraph(df_1,symbol):
+def PlotGraph_MACD(df_1,symbol):
     
     df_1.reset_index(inplace=True)
 
@@ -113,10 +113,37 @@ def PlotGraph(df_1,symbol):
             color='blue', ax=ax) 
     
     # set the title 
-    plt.title(symbol+'-LinePlots') 
-    
+    plt.title(symbol+'-MACD') 
+
+    saveName = symbol+"_MACD.png"
+    plt.savefig(saveName)
     # show the plot 
     plt.show()
+
+
+def PlotGraph_RSI(df_1,symbol):
+    
+    df_1.reset_index(inplace=True)
+
+    # Get current axis 
+    ax = plt.gca() 
+    #subClass = ["Date","Open","Close","High","Low","Volume","macd","macd_h","macd_s","rs","rsi"]
+    # line plot for math marks 
+    df_1.plot(kind='line', 
+            x='Date', 
+            y='rsi', 
+            color='green', ax=ax) 
+    
+    # set the title 
+    plt.title(symbol+'-RSI') 
+
+    saveName = symbol+"_RSI.png"
+    plt.savefig(saveName)
+
+    # show the plot 
+    plt.show()
+    
+
 
 
 def GetNseList():
@@ -164,8 +191,8 @@ if __name__=="__main__":
 
         df = GenerateOutput_1(df)
 
-        PlotGraph(df,symbol)
-
+        PlotGraph_MACD(df,symbol)
+        PlotGraph_RSI(df,symbol)
         #csvname = symbol+".csv"
         #df.to_csv(csvname)
         
