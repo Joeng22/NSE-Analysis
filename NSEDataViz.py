@@ -96,8 +96,6 @@ def RoundDFValues(df_1):
 
 def PlotGraph_MACD(df_1,symbol):
     
-    df_1.reset_index(inplace=True)
-
     # Get current axis 
     ax = plt.gca() 
     #subClass = ["Date","Open","Close","High","Low","Volume","macd","macd_h","macd_s","rs","rsi"]
@@ -123,8 +121,6 @@ def PlotGraph_MACD(df_1,symbol):
 
 def PlotGraph_RSI(df_1,symbol):
     
-    df_1.reset_index(inplace=True)
-
     # Get current axis 
     ax = plt.gca() 
     #subClass = ["Date","Open","Close","High","Low","Volume","macd","macd_h","macd_s","rs","rsi"]
@@ -142,7 +138,7 @@ def PlotGraph_RSI(df_1,symbol):
 
     # show the plot 
     plt.show()
-    
+
 
 
 
@@ -190,6 +186,8 @@ if __name__=="__main__":
         df = CalculateSMA(df,200)
 
         df = GenerateOutput_1(df)
+
+        df.reset_index(inplace=True)
 
         PlotGraph_MACD(df,symbol)
         PlotGraph_RSI(df,symbol)
